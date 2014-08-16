@@ -1,0 +1,18 @@
+[submodule "jedi/abdedra"]
+	path = jedi/abdedra
+	url = https://github.com/abedra/emacs.d.git
+[submodule "jedi/dimitri"]
+	path = jedi/dimitri
+	url = https://github.com/dimitri/emacs-kicker.git
+[submodule "jedi/magnars"]
+	path = jedi/magnars
+	url = https://github.com/magnars/.emacs.d.git
+[submodule "jedi/technomancy"]
+	path = jedi/technomancy
+	url = https://github.com/technomancy/emacs-starter-kit.git
+[submodule "jedi/overtone"]
+	path = jedi/overtone
+	url = https://github.com/overtone/emacs-live.git
+[submodule "jedi/bbatsov"]
+	path = jedi/bbatsov
+	url = https://github.com/bbatsov/prelude
