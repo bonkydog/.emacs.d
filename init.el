@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 ;;;; Brian Jenkins (bonkdog)'s Emacs Configuration
 
 ;;; "Your father's lightsaber. This is the weapon of a Jedi
