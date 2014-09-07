@@ -16,3 +16,6 @@
 [submodule "jedi/bbatsov"]
 	path = jedi/bbatsov
 	url = https://github.com/bbatsov/prelude
+[submodule "jedi/technomancy/better-defaults"]
+	path = jedi/technomancy/better-defaults
+	url = https://github.com/technomancy/better-defaults.git
