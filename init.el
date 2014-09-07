@@ -35,18 +35,24 @@
   (interactive)
   (find-file user-init-file))
 
-(setq bonkydog-backups-dir (concat user-emacs-directory "backups/")
-      bonkydog-autosaves-dir (concat user-emacs-directory "autosaves/"))
-  
-;;; Disable unneeded chrome.
 
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(toggle-scroll-bar -1)
+;;; Disable unneeded chrome.
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (setq inhibit-splash-screen t
       initial-scratch-message nil)
 
 
+;;; Make sure ansi colour character escapes are honored.
+(require 'ansi-color)
+(ansi-color-for-comint-mode-on)
+
+(setq font-lock-maximum-decoration t
+      color-theme-is-global t)
+
+;;; Wrap lines at 72
+(set-default 'fill-column 72)
 ;;; Save unsaved file-backed buffers on loss of focus.
 
 (defun save-file-visiting-buffers ()
