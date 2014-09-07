@@ -27,9 +27,27 @@
 ;;;
 ;;; Sam Aaron
 ;;; https://github.com/overtone/emacs-live
+
+;;; Shortcut to edit this file.
+(defun ei ()
+  (interactive)
+  (find-file user-init-file))
+
 ;;; Disable unneeded chrome.
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (toggle-scroll-bar -1)
-(setq inhibit-splash-screen t
-      initial-scratch-message nil)
+(setq inhibit-splash-screen t)
+(setq initial-scratch-message nil)
+
+;;; Save unsaved file-backed buffers on loss of focus
+(defun save-file-visiting-buffers ()
+  (interactive)
+  (save-some-buffers t nil))
+
+(add-hook 'focus-out-hook 'save-file-visiting-buffers) 
+
+;;; Revert buffers on gain of focus
+(global-auto-revert-mode 1)
+(setq global-auto-revert-non-file-buffers 1)
+
