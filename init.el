@@ -116,3 +116,6 @@
 (auto-compile-on-save-mode 1)
 
 
+;;; Dired configuration
+
+(require 'dircolors)
