@@ -4,3 +4,4 @@ recentf
 tmp/
 autosaves/
 backups/
+*.elc

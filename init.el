@@ -29,6 +29,16 @@
 ;;; https://github.com/overtone/emacs-live
 
 
+;;; Load libraries from lib
+(add-to-list 'load-path (concat user-emacs-directory "lib/"))
+
+(defun bonkydog-add-lib (p)
+  (add-to-list 'load-path (concat user-emacs-directory "lib/" p)))
+
+
+;;; Start server for emacsclient command.
+(server-start)
+
 ;;; Shortcut to edit this file.
 
 (defun ei ()
@@ -53,6 +63,8 @@
 
 ;;; Wrap lines at 72
 (set-default 'fill-column 72)
+
+
 ;;; Save unsaved file-backed buffers on loss of focus.
 
 (defun save-file-visiting-buffers ()
@@ -90,5 +102,15 @@
   kept-new-versions 6
   kept-old-versions 2
   version-control t)
+
+
+;;; Auto-recompile ELisp
+
+(bonkydog-add-lib "packed")
+(require 'packed)
+(require 'auto-compile)
+
+(auto-compile-on-load-mode 1)
+(auto-compile-on-save-mode 1)
 
 
