@@ -1,4 +1,6 @@
 .smex-items
 ac-comphist.dat
 recentf
-tmp
+tmp/
+autosaves/
+backups/

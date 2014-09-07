@@ -35,17 +35,19 @@
   (interactive)
   (find-file user-init-file))
 
+(setq bonkydog-backups-dir (concat user-emacs-directory "backups/")
+      bonkydog-autosaves-dir (concat user-emacs-directory "autosaves/"))
   
 ;;; Disable unneeded chrome.
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (toggle-scroll-bar -1)
-(setq inhibit-splash-screen t)
-(setq initial-scratch-message nil)
+(setq inhibit-splash-screen t
+      initial-scratch-message nil)
 
 
-;;; Save unsaved file-backed buffers on loss of focus
+;;; Save unsaved file-backed buffers on loss of focus.
 
 (defun save-file-visiting-buffers ()
   (interactive)
@@ -54,9 +56,15 @@
 (add-hook 'focus-out-hook 'save-file-visiting-buffers) 
 
 
-;;; Revert buffers on gain of focus
+;;; Revert buffers on gain of focus.
 
 (global-auto-revert-mode 1)
 (setq global-auto-revert-non-file-buffers 1)
+
+
+;;; Centralize backup and autosave files.
+
+(add-to-list 'load-path (concat user-emacs-directory "lib/"))
+(load-file (concat user-emacs-directory "config/backup-dir-conf.el"))
 
 
