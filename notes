@@ -1,0 +1,18 @@
+Emacs config thoughts.
+
+I like Emacs Live a lot.  So much that I keep getting tempted not to
+bother with developing my own config and just customizing Sam's.  But
+I'm put off by the branding and by being dependent on waiting for him to
+update stuff.  I don't want to submit pull requests or fork.  I don't
+want to have to turn off his splash screen and then feel bad about it.
+The packs are well structured, maybe too well structured.  Too
+frameworky.  So I want to study his work, but not use it directly.
+
+El-Get.  I'm a little freaked out by the whole security bit.
+Downloading code off a wiki and executing it seems, frankly, crazy.
+It's unclear to me how to know what version anything is at.  Again, too
+frameworky.  I'd rather just vendor & submodule stuff and track it using
+git submodules.  If I need to fork, just submodule my fork.  Gives me
+ownership and better visibility into what is going on.
+
+So no, no El-Get either.  Maybe just for discovery of new stuff.

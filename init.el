@@ -31,11 +31,19 @@
 ;;; https://github.com/overtone/emacs-live
 
 
-;;; Load libraries from lib
-(add-to-list 'load-path (concat user-emacs-directory "lib/"))
+;;; Set up load path.
 
-(defun bonkydog-add-lib (p)
-  (add-to-list 'load-path (concat user-emacs-directory "lib/" p)))
+;; my code
+(add-to-list 'load-path (concat user-emacs-directory "src/"))
+
+; other peoples' "vendored" code.  (That is, checked into this project.)
+(add-to-list 'load-path (concat user-emacs-directory "vendor/")) ; others' code, checked in.
+
+; other people's code, "submoduled" into this project
+(dolist (dir (directory-files (concat user-emacs-directory "lib/") t))
+  (if (and (file-directory-p dir)
+	   (not (string-prefix-p "." (file-name-nondirectory dir))))
+      (add-to-list 'load-path dir)))
 
 
 ;;; Start server for emacsclient command.
@@ -108,7 +116,6 @@
 
 ;;; Auto-recompile ELisp
 
-(bonkydog-add-lib "packed")
 (require 'packed)
 (require 'auto-compile)
 
