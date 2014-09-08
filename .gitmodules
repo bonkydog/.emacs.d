@@ -19,3 +19,12 @@
 [submodule "jedi/technomancy/better-defaults"]
 	path = jedi/technomancy/better-defaults
 	url = https://github.com/technomancy/better-defaults.git
+[submodule "lib/auto-compile"]
+	path = lib/auto-compile
+	url = https://github.com/tarsius/auto-compile.git
+[submodule "lib/cl-lib"]
+	path = lib/cl-lib
+	url = https://github.com/emacsmirror/cl-lib.git
+[submodule "lib/packed"]
+	path = lib/packed
+	url = https://github.com/tarsius/packed.git
