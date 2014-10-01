@@ -28,3 +28,6 @@
 [submodule "lib/packed"]
 	path = lib/packed
 	url = https://github.com/tarsius/packed.git
+[submodule "lib/elisp-slime-nav"]
+	path = lib/elisp-slime-nav
+	url = https://github.com/purcell/elisp-slime-nav

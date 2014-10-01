@@ -126,3 +126,9 @@
 ;;; Dired configuration
 
 (require 'dircolors)
+
+
+;;; Navigate ELisp source without a tags file
+
+(require 'elisp-slime-nav)
+(add-hook 'emacs-lisp-mode-hook 'elisp-slime-nav-mode)
