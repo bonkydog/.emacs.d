@@ -34,3 +34,6 @@
 [submodule "jedi/flyingmachine"]
 	path = jedi/flyingmachine
 	url = https://github.com/flyingmachine/emacs.d
+[submodule "lib/paredit"]
+	path = lib/paredit
+	url = https://github.com/emacsmirror/paredit.git
