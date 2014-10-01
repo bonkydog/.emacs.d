@@ -31,3 +31,6 @@
 [submodule "lib/elisp-slime-nav"]
 	path = lib/elisp-slime-nav
 	url = https://github.com/purcell/elisp-slime-nav
+[submodule "jedi/flyingmachine"]
+	path = jedi/flyingmachine
+	url = https://github.com/flyingmachine/emacs.d
