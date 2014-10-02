@@ -24,4 +24,5 @@
 (exec-path-from-shell-initialize)
 
 ;; Ignore .DS_Store files with ido mode
+(require 'ido)
 (add-to-list 'ido-ignore-files "\\.DS_Store")
