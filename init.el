@@ -166,3 +166,7 @@
 ;; Configure Emacs built-ins
 
 (load "configure-built-ins")
+(load "recentf-conf")
+(require 'win-switch)
+(load "win-switch-conf")
+(load "window-number-conf")

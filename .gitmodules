@@ -70,3 +70,9 @@
 [submodule "lib/exec-path-from-shell"]
 	path = lib/exec-path-from-shell
 	url = https://github.com/purcell/exec-path-from-shell.git
+[submodule "lib/win-switch"]
+	path = lib/win-switch
+	url = https://github.com/genovese/win-switch.git
+[submodule "lib/window-number"]
+	path = lib/window-number
+	url = https://github.com/emacsmirror/window-number.git
