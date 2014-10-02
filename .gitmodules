@@ -7,9 +7,6 @@
 [submodule "jedi/magnars"]
 	path = jedi/magnars
 	url = https://github.com/magnars/.emacs.d.git
-[submodule "jedi/technomancy"]
-	path = jedi/technomancy/emacs-starter-kit
-	url = https://github.com/technomancy/emacs-starter-kit.git
 [submodule "jedi/overtone"]
 	path = jedi/overtone
 	url = https://github.com/overtone/emacs-live.git
