@@ -45,9 +45,17 @@
       initial-scratch-message nil)
 
 
-;;; Set up load path.
+;;; Set up directory variables
 
-(defun bk9y-set-up-load-path () ; This is itempotent.  Feel free to re-run it if you add libraries.
+(setq bonkydog-root-dir user-emacs-directory
+      bonkydog-backups-dir (expand-file-name  "backups" bonkydog-root-dir)
+      bonkydog-autosaves-dir (expand-file-name "autosaves" bonkydog-root-dir)
+      bonkydog-tmp-dir (file-name-as-directory (expand-file-name "tmp" bonkydog-root-dir)))
+
+
+;;; Set up load path
+
+(defun bonkydog-set-up-load-path () ; This is itempotent.  Feel free to re-run it if you add libraries.
   ;; my code
   (add-to-list 'load-path (concat user-emacs-directory "src/"))
 
@@ -57,10 +65,10 @@
   ;; other people's code, "submoduled" into this project
   (dolist (dir (directory-files (concat user-emacs-directory "lib/") t))
     (if (and (file-directory-p dir)
-	     (not (string-prefix-p "." (file-name-nondirectory dir))))
-	(add-to-list 'load-path dir))))
+             (not (string-prefix-p "." (file-name-nondirectory dir))))
+        (add-to-list 'load-path dir))))
 
-(bk9y-set-up-load-path)
+(bonkydog-set-up-load-path)
 
 
 ;;; Extend ELisp in useful ways.
@@ -91,7 +99,7 @@
   (interactive)
   (save-some-buffers t nil))
 
-(add-hook 'focus-out-hook 'save-file-visiting-buffers) 
+(add-hook 'focus-out-hook 'save-file-visiting-buffers)
 
 
 ;;; Revert buffers on gain of focus.
@@ -102,9 +110,6 @@
 
 ;;; Centralize backup and autosave files.
 
-(setq bonkydog-backups-dir (concat user-emacs-directory "backups/")
-      bonkydog-autosaves-dir (concat user-emacs-directory "autosaves/"))
-
 (require 'backup-dir)
 
 (setq file-precious-flag t)
@@ -113,10 +118,10 @@
 (setq bkup-backup-directory-info
       `((t ,bonkydog-backups-dir ok-create full-path prepend-name)))
 
-(setq auto-save-file-name-transforms `((".*" ,(concat bonkydog-autosaves-dir "\\1") t)))
+(setq auto-save-file-name-transforms `((".*" ,(expand-file-name  "\\1" bonkydog-autosaves-dir) t)))
 (setq backup-by-copying t)
 (setq backup-directory-alist `((".*" . ,bonkydog-backups-dir)))
-(setq auto-save-list-file-name (concat bonkydog-autosaves-dir "autosave-list"))
+(setq auto-save-list-file-name (expand-file-name "autosave-list" bonkydog-autosaves-dir))
 
 (setq delete-old-versions t
   kept-new-versions 6
@@ -394,8 +399,8 @@
   (defun live-paste-to-osx (text &optional push)
     (let ((process-connection-type nil))
       (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
-	(process-send-string proc text)
-	(process-send-eof proc))))
+        (process-send-string proc text)
+        (process-send-eof proc))))
 
   (when (not window-system)
     (setq interprogram-cut-function 'live-paste-to-osx)
@@ -411,3 +416,102 @@
 
   ;; Ignore .DS_Store files with ido mode
   (add-to-list 'ido-ignore-files "\\.DS_Store"))
+
+
+;; Configure Emacs built-ins
+
+;;use file path to ensure buffer name uniqueness
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+(setq uniquify-separator "/")
+(setq uniquify-after-kill-buffer-p t)
+(setq uniquify-ignore-buffers-re "^\\*")
+
+;;store history of recently opened files
+(require 'recentf)
+(setq recentf-save-file (concat bonkydog-tmp-dir "recentf")
+      recentf-max-saved-items 200)
+(recentf-mode t)
+
+;;When you visit a file, point goes to the last place where it was
+;;when you previously visited. Save file is set to bonkydog-tmp-dir/places
+(require 'saveplace)
+(setq-default save-place t)
+(setq save-place-file (concat bonkydog-tmp-dir "places"))
+
+;;enable cua-mode for rectangular selections
+(require 'cua-base)
+(require 'cua-gmrk)
+(require 'cua-rect)
+(cua-mode 1)
+(setq cua-enable-cua-keys nil)
+
+;;enable winner mode for C-c-(<left>|<right>) to navigate the history
+;;of buffer changes i.e. undo a split screen
+(when (fboundp 'winner-mode)
+      (winner-mode 1))
+
+(setq initial-major-mode 'lisp-interaction-mode
+      redisplay-dont-pause t
+      column-number-mode t
+      echo-keystrokes 0.02
+      inhibit-startup-message t
+      transient-mark-mode t
+      shift-select-mode nil
+      require-final-newline t
+      truncate-partial-width-windows nil
+      delete-by-moving-to-trash nil
+      confirm-nonexistent-file-or-buffer nil
+      query-replace-highlight t
+      next-error-highlight t
+      next-error-highlight-no-select t)
+
+;;set all coding systems to utf-8
+(set-language-environment 'utf-8)
+(set-default-coding-systems 'utf-8)
+(setq locale-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+;;disable CJK coding/encoding (Chinese/Japanese/Korean characters)
+(setq utf-translate-cjk-mode nil)
+
+(set-default 'indent-tabs-mode nil)
+(auto-compression-mode t)
+(show-paren-mode 1)
+
+(defalias 'yes-or-no-p 'y-or-n-p)
+
+;;default to unified diffs
+(setq diff-switches "-u"
+      ediff-window-setup-function 'ediff-setup-windows-plain)
+
+;; make emacs use the clipboard
+(setq x-select-enable-clipboard t)
+
+;;remove all trailing whitespace and trailing blank lines before
+;;saving the file
+(defvar live-ignore-whitespace-modes '(markdown-mode))
+(defun live-cleanup-whitespace ()
+  (if (not (member major-mode live-ignore-whitespace-modes))
+      (let ((whitespace-style '(trailing empty)) )
+        (whitespace-cleanup))))
+
+(add-hook 'before-save-hook 'live-cleanup-whitespace)
+
+;; savehist keeps track of some history
+(setq savehist-additional-variables
+      ;; search entries
+      '(search ring regexp-search-ring)
+      ;; save every minute
+      savehist-autosave-interval 60
+      ;; keep the home clean
+      savehist-file (concat bonkydog-tmp-dir "savehist"))
+(savehist-mode t)
+
+
+;; bookmarks
+(require 'bookmark)
+(setq bookmark-default-file (expand-file-name "bookmarks" bonkydog-tmp-dir)
+      bookmark-save-flag 1)
