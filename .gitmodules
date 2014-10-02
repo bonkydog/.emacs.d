@@ -76,3 +76,15 @@
 [submodule "lib/window-number"]
 	path = lib/window-number
 	url = https://github.com/emacsmirror/window-number.git
+[submodule "lib/mic-paren"]
+	path = lib/mic-paren
+	url = https://github.com/emacsmirror/mic-paren.git
+[submodule "lib/rainbow-delimiters"]
+	path = lib/rainbow-delimiters
+	url = https://github.com/jlr/rainbow-delimiters.git
+[submodule "align-cljlet"]
+	path = lib/align-cljlet/
+	url = https://github.com/gstamp/align-cljlet.git
+[submodule "lib/align-cljlet"]
+	path = lib/align-cljlet
+	url = https://github.com/gstamp/align-cljlet.git
