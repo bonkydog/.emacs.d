@@ -37,3 +37,27 @@
 [submodule "lib/paredit"]
 	path = lib/paredit
 	url = https://github.com/emacsmirror/paredit.git
+[submodule "lib/clj-refactor"]
+	path = lib/clj-refactor
+	url = https://github.com/clojure-emacs/clj-refactor.el.git
+[submodule "lib/dash"]
+	path = lib/dash
+	url = https://github.com/magnars/dash.el.git
+[submodule "lib/s"]
+	path = lib/s
+	url = https://github.com/magnars/s.el.git
+[submodule "lib/yasnippet"]
+	path = lib/yasnippet
+	url = https://github.com/capitaomorte/yasnippet.git
+[submodule "lib/multiple-cursors"]
+	path = lib/multiple-cursors
+	url = https://github.com/magnars/multiple-cursors.el.git
+[submodule "lib/clojure-mode"]
+	path = lib/clojure-mode
+	url = https://github.com/clojure-emacs/clojure-mode.git
+[submodule "lib/cider"]
+	path = lib/cider
+	url = https://github.com/clojure-emacs/cider.git
+[submodule "lib/queue"]
+	path = lib/queue
+	url = https://github.com/emacsmirror/queue.git

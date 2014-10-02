@@ -33,26 +33,37 @@
 
 ;;; Set up load path.
 
-;; my code
-(add-to-list 'load-path (concat user-emacs-directory "src/"))
+(defun bk9y-set-up-load-path () ; This is itempotent.  Feel free to re-run it if you add libraries.
+  ;; my code
+  (add-to-list 'load-path (concat user-emacs-directory "src/"))
 
-; other peoples' "vendored" code.  (That is, checked into this project.)
-(add-to-list 'load-path (concat user-emacs-directory "vendor/")) ; others' code, checked in.
+  ;; other peoples' "vendored" code.  (That is, checked into this project.)
+  (add-to-list 'load-path (concat user-emacs-directory "vendor/")) ; others' code, checked in.
 
-; other people's code, "submoduled" into this project
-(dolist (dir (directory-files (concat user-emacs-directory "lib/") t))
-  (if (and (file-directory-p dir)
-	   (not (string-prefix-p "." (file-name-nondirectory dir))))
-      (add-to-list 'load-path dir)))
+  ;; other people's code, "submoduled" into this project
+  (dolist (dir (directory-files (concat user-emacs-directory "lib/") t))
+    (if (and (file-directory-p dir)
+	     (not (string-prefix-p "." (file-name-nondirectory dir))))
+	(add-to-list 'load-path dir))))
+
+(bk9y-set-up-load-path)
+
+
+;;; Extend ELisp in useful ways.
+(require 'cl)   ; Common Lisp-esqe extensions
+(require 'dash) ; Clojure-esque data-structure tools.
+(require 's)
+
 
 ;;; Start server for emacsclient command.
+
 (server-start)
 
 ;;; Shortcut to edit this file.
 
 (defun ei ()
   (interactive)
-  (find-file user-init-file))
+  (find-file user-init-file)
 
 
 ;;; Disable unneeded chrome.
@@ -308,3 +319,28 @@
 (define-key paredit-mode-map (kbd "C-M-u")   'paredit-backward-up)
 (define-key paredit-mode-map (kbd "M-T")     'transpose-sexps)
 (define-key paredit-mode-map (kbd "C-M-k")   'live-paredit-copy-sexp-at-point)
+
+
+;;; Snippets
+
+(require 'yasnippet)
+
+
+;;; Multiple Cursors
+
+(require 'multiple-cursors)
+
+
+;;; Clojure Mode
+
+(require 'clojure-mode)
+
+
+;;; Cider (Clojure REPL)
+
+(require 'cider)
+
+
+;;; Clojure Refactoring
+
+(require 'clj-refactor)
