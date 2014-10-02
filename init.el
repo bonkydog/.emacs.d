@@ -30,6 +30,20 @@
 ;;; Sam Aaron
 ;;; https://github.com/overtone/emacs-live
 
+;;; Shortcut to edit this file.
+
+(defun ei ()
+  (interactive)
+  (find-file user-init-file))
+
+
+;;; Disable unneeded chrome.
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(setq inhibit-splash-screen t
+      initial-scratch-message nil)
+
 
 ;;; Set up load path.
 
@@ -58,20 +72,6 @@
 ;;; Start server for emacsclient command.
 
 (server-start)
-
-;;; Shortcut to edit this file.
-
-(defun ei ()
-  (interactive)
-  (find-file user-init-file)
-
-
-;;; Disable unneeded chrome.
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(setq inhibit-splash-screen t
-      initial-scratch-message nil)
 
 
 ;;; Make sure ansi color character escapes are honored.
