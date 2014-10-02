@@ -161,6 +161,8 @@
 
 (load "clojure-and-lisp-tools")
 
+(load "completion")
+
 ;;; Customize for MacOS
 
 (when (eq system-type 'darwin)
@@ -172,6 +174,7 @@
 
 (load "configure-built-ins")
 (load "recentf-conf")
+
 (require 'win-switch)
 (load "win-switch-conf")
 (load "window-number-conf")
