@@ -144,14 +144,35 @@
 (add-hook 'emacs-lisp-mode-hook 'elisp-slime-nav-mode)
 
 
+;;; Fuzzy matching
+
+(require 'flx)
+
+;;; Ido mode
+
+(require 'ido)
+(require 'idomenu)
+(require 'flx-ido)
+
+(ido-mode t)
+(flx-ido-mode 1)
+(setq ido-enable-prefix nil
+      ido-create-new-buffer 'always
+      ido-max-prospects 10
+      ido-default-file-method 'selected-window
+      ido-everywhere 1)
+
+(icomplete-mode 1)
+
+
 ;;; Smart Meta-X
+
 (require 'smex)
 (smex-initialize)
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 ;; This is your old M-x.
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
-
 
 
 ;;; Paredit

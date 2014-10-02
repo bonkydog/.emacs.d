@@ -64,3 +64,9 @@
 [submodule "lib/smex"]
 	path = lib/smex
 	url = https://github.com/nonsequitur/smex.git
+[submodule "lib/flx"]
+	path = lib/flx
+	url = https://github.com/lewang/flx.git
+[submodule "lib/idomenu"]
+	path = lib/idomenu
+	url = https://github.com/emacsmirror/idomenu.git
