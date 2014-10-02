@@ -70,6 +70,11 @@
 
 (bonkydog-set-up-load-path)
 
+;; Set up 'custom' system
+(setq custom-file (expand-file-name "customizations.el" bonkydog-root-dir ))
+(if (file-exists-p custom-file)
+  (load custom-file))
+
 
 ;;; Extend ELisp in useful ways.
 (require 'cl-lib)   ; Common Lisp-esqe extensions
@@ -406,3 +411,14 @@ toggle comment on line (and then move down to next line)."
 (global-set-key (kbd "s-r") 'isearch-backward)
 
 (cljr-add-keybindings-with-prefix "s-R")
+
+
+
+;; make the fringe stand out from the background
+(setq solarized-distinct-fringe-background t)
+
+;; make the modeline high contrast
+(setq solarized-high-contrast-mode-line t)
+
+(require 'solarized)
+(load-theme 'solarized-light)
