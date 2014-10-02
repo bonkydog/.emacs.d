@@ -91,7 +91,7 @@
 [submodule "lib/slamhound"]
 	path = lib/slamhound
 	url = https://github.com/technomancy/slamhound.git
-[submodule "solarized-emacs"]
+[submodule "SOLARIZED-emacs"]
 	path = lib/solarized-emacs/
 	url = https://github.com/bbatsov/solarized-emacs.git
 [submodule "lib/popwin"]
