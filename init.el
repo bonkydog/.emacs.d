@@ -422,3 +422,6 @@ toggle comment on line (and then move down to next line)."
 
 (require 'solarized)
 (load-theme 'solarized-light)
+
+
+(require 'popwin)

@@ -97,3 +97,6 @@
 [submodule "solarized-emacs"]
 	path = lib/solarized-emacs/
 	url = https://github.com/bbatsov/solarized-emacs.git
+[submodule "lib/popwin"]
+	path = lib/popwin
+	url = https://github.com/m2ym/popwin-el.git
