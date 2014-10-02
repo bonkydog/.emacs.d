@@ -64,9 +64,9 @@
 
 
 ;;; Extend ELisp in useful ways.
-(require 'cl)   ; Common Lisp-esqe extensions
-(require 'dash) ; Clojure-esque data-structure tools.
-(require 's)
+(require 'cl-lib)   ; Common Lisp-esqe extensions
+(require 'dash)     ; Clojure-esque data-structure tools
+(require 's)        ; string handling tools
 
 
 ;;; Start server for emacsclient command.
