@@ -144,6 +144,16 @@
 (add-hook 'emacs-lisp-mode-hook 'elisp-slime-nav-mode)
 
 
+;;; Smart Meta-X
+(require 'smex)
+(smex-initialize)
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; This is your old M-x.
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+
+
+
 ;;; Paredit
 
 (eval-after-load 'paredit

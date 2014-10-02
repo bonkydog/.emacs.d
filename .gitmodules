@@ -61,3 +61,6 @@
 [submodule "lib/queue"]
 	path = lib/queue
 	url = https://github.com/emacsmirror/queue.git
+[submodule "lib/smex"]
+	path = lib/smex
+	url = https://github.com/nonsequitur/smex.git
