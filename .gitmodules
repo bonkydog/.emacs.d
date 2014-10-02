@@ -31,7 +31,7 @@
 [submodule "lib/paredit"]
 	path = lib/paredit
 	url = https://github.com/emacsmirror/paredit.git
-[submodule "lib/clj-refactor"]
+[submodule "lib/CLj-refactor"]
 	path = lib/clj-refactor
 	url = https://github.com/clojure-emacs/clj-refactor.el.git
 [submodule "lib/dash"]
