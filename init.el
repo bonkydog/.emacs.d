@@ -170,3 +170,239 @@
 (require 'win-switch)
 (load "win-switch-conf")
 (load "window-number-conf")
+
+
+;;;;=======================================================
+
+;; save all files on loss of focus
+
+(defun mute (f)
+  (flet ((message (&rest ignored) nil))
+    (funcall f)))
+
+(defun save-all ()
+  (interactive)
+  (save-some-buffers t))
+
+(defun save-all-quietly ()
+  (interactive)
+  (mute 'save-all))
+
+(add-hook 'focus-out-hook 'save-all-quietly)
+
+;; revert all buffers on regaining focus
+;; (a little scary -- use at your own risk!)
+;; (from http://www.emacswiki.org/emacs/RevertBuffer)
+;; possibly unnecessary with global autorevert mode
+(defun revert-all-buffers ()
+  "Refreshes all open buffers from their respective files."
+  (interactive)
+  (dolist (buf (buffer-list))
+    (with-current-buffer buf
+      (when (and (buffer-file-name) (file-exists-p (buffer-file-name)) (not (buffer-modified-p)))
+        (revert-buffer t t t) )))
+  (message "Refreshed open files.") )
+
+(defun revert-all-buffers-quietly ()
+  (interactive)
+  (mute 'revert-all-buffers))
+
+(global-auto-revert-mode 1)
+(setq global-auto-revert-non-file-buffers 1)
+
+;; configure find-file-in-project
+;;(dolist (x '("*.coffee" "*.sass" "*.clj" "*.cljs")) (add-to-list 'ffip-patterns x :append))
+
+;; Load bindings config
+(load "bindings")
+
+;; load white-background color theme
+;;(load "gandalf")
+;;(color-theme-gandalf)
+
+;; set up sticky windows.  use C-x 9 to stick a window in place.
+
+(require 'sticky-windows)
+(global-set-key     [(control x) (?0)]        'sticky-window-delete-window)
+(global-set-key     [(control x) (?1)]        'sticky-window-delete-other-windows)
+(global-set-key     [(control x) (?9)]        'sticky-window-keep-window-visible)
+
+;; use mark to jump around without transient mark mode making you crazy
+;;(require 'mark-fix)
+
+(global-linum-mode t)
+
+
+;; ;; git-gutter
+;; (live-add-pack-lib "fringe-helper")
+;; (require 'fringe-helper)
+
+;; (live-add-pack-lib "git-gutter-fringe")
+;; (require 'git-gutter-fringe)
+
+;; (setq git-gutter-fr:side 'right-fringe)
+;; (global-git-gutter-mode)
+
+(defun cdt ()
+  "change directory to tektite project"
+  (interactive)
+  (let ((path "~/workspace/clojure_lab/tektite-app"))
+    (cd path)
+    (dired path)))
+
+(defun cdd ()
+  "change directory to datomizer project"
+  (interactive)
+  (let ((path "~/workspace/goodguide/datomizer"))
+    (cd path)
+    (dired path)))
+
+(defun cds ()
+  "change directory to stack-spike project"
+  (interactive)
+  (let ((path "~/workspace/clojure_lab/stack_spike"))
+    (cd path)
+    (dired path)))
+
+(global-set-key (kbd "s-i") 'ei)
+
+(require 'win-switch)
+(global-set-key (kbd "s-}") 'win-switch-next-window)
+(global-set-key (kbd "s-{") 'win-switch-previous-window)
+
+
+;; (defun clojure-test-clear-and-run-test ()
+;;   (interactive)
+;;   (with-current-buffer (cider-current-repl-buffer)
+;;     (cider-clear-buffer))
+;;   (clojure-test-run-test)
+;;   (set-window-start (get-buffer-window (cider-current-repl-buffer) t) 0))
+
+;; (global-set-key (kbd "<f10>") 'clojure-test-clear-and-run-test)
+
+(defun clojure-test-clear-and-run-tests ()
+  (interactive)
+  (clojure-test-run-tests)
+  (set-window-start (get-buffer-window (cider-current-repl-buffer) t) 0))
+
+(global-set-key (kbd "<f11>") 'clojure-test-clear-and-run-tests)
+
+(setq cider-prompt-save-file-on-load nil)
+
+(defun save-clojure-buffers ()
+  (save-some-buffers nil (lambda () (equal major-mode 'clojure-mode))))
+
+(defun clojure-test-clear-and-run-user-t ()
+  (interactive)
+  (save-clojure-buffers)
+  (clojure-test-clear)
+  (cider-interactive-eval "(user/t)"))
+
+(global-set-key (kbd "<f12>") 'clojure-test-clear-and-run-user-t)
+
+
+(defun cider-refresh ()
+  (interactive)
+  (save-clojure-buffers)
+  (cider-interactive-eval "(user/reset)"))
+
+(global-set-key (kbd "s-<return>") 'cider-refresh)
+
+
+(defun cider-insert-and-run-defun-in-repl ()
+  (interactive)
+  "Insert FORM in the REPL buffer."
+  (let ((start-pos (point))
+        (form (cider-defun-at-point)))
+    (while (string-match "\\`[ \t\n\r]+\\|[ \t\n\r]+\\'" form)
+      (setq form (replace-match "" t t form)))
+    (with-current-buffer (cider-current-repl-buffer)
+      (end-of-buffer)
+      (insert form)
+      (indent-region start-pos (point))
+      (cider-repl-return))))
+
+(define-key cider-mode-map
+  (kbd "s-.")
+  'cider-insert-and-run-defun-in-repl)
+
+
+(windmove-default-keybindings 'super)
+
+(global-set-key (kbd "s-_") 'undo-tree-visualize)
+
+
+(defun mark-line ()
+  "Select the current line"
+  (interactive)
+  (end-of-line) ; move to end of line
+  (set-mark (line-beginning-position)))
+
+(global-set-key (kbd "C-l") 'mark-line)
+(global-set-key (kbd "C-t") 'find-file-in-project)
+
+
+(require 'dired)
+(define-key dired-mode-map (kbd "<mouse-2>") 'dired-find-file) ; not sure why this is mouse-2, but whatever.
+
+; don't popwin my shell, dude.
+;; (setq popwin:special-display-config
+;;       (remove-if (lambda (x) (equal "*shell*" (car x)))
+;;                  popwin:special-display-config))
+
+
+
+(require 'slamhound)
+(defun save-all-and-slamhound ()
+  (interactive)
+  (save-all-quietly)
+  (slamhound)
+  (save-all-quietly))
+(define-key clojure-mode-map (kbd "C-c l s") 'save-all-and-slamhound)
+
+(defun configure-text-minor-modes ()
+  (auto-fill-mode 1)
+  (auto-complete-mode -1))
+
+(add-hook 'text-mode-hook 'configure-text-minor-modes)
+
+(defun increase-left-margin-by-one (from to)
+  (interactive "*r")
+  (increase-left-margin from to 1))
+
+(defun decrease-left-margin-by-one (from to)
+  (interactive "*r")
+  (decrease-left-margin from to 1))
+
+(global-set-key (kbd "s-[") 'decrease-left-margin-by-one)
+(global-set-key (kbd "s-]") 'increase-left-margin-by-one)
+
+(defun toggle-comment-for-line-or-region (arg)
+  "Make Emacs Alt-/ behave more like RubyMine: toggle comment on region or
+toggle comment on line (and then move down to next line)."
+  (interactive "*P")
+  (let ((initial-mark-state (and mark-active transient-mark-mode)))
+    (unless initial-mark-state
+      (mark-line))
+    (comment-or-uncomment-region (region-beginning) (region-end) arg)
+    (unless initial-mark-state
+      (next-line))
+    (font-lock-fontify-buffer)))
+
+(global-set-key (kbd "M-/") 'toggle-comment-for-line-or-region)
+
+(global-set-key (kbd "s-w") 'sticky-window-delete-window)
+
+;; (global-set-key (kbd "s-D") 'dash-at-point)
+
+(global-set-key (kbd "s-M-<down>") 'next-error)
+(global-set-key (kbd "s-M-<up>") 'previous-error)
+
+(require 'ag)
+
+(global-set-key (kbd "s-=") 'text-scale-increase)
+(global-set-key (kbd "s--") 'text-scale-decrease)
+
+(global-set-key (kbd "s-r") 'isearch-backward)
+
+(cljr-add-keybindings-with-prefix "s-R")
