@@ -56,6 +56,7 @@
 ;;; Set up load path
 
 (defun bonkydog-set-up-load-path () ; This is itempotent.  Feel free to re-run it if you add libraries.
+  (interactive)
   ;; my code
   (add-to-list 'load-path (expand-file-name "src" bonkydog-root-dir))
 
@@ -93,6 +94,7 @@
 
 (setq font-lock-maximum-decoration t
       color-theme-is-global t)
+
 
 ;;; Wrap lines at 72
 (set-default 'fill-column 72)
