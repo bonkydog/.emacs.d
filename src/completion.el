@@ -20,6 +20,9 @@
 
 (icomplete-mode 1)
 
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(autoload 'ibuffer "ibuffer" "List buffers." t)
+
 (defvar live-symbol-names)
 (defvar live-name-and-pos)
 
