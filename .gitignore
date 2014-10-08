@@ -5,3 +5,4 @@ tmp/
 autosaves/
 backups/
 *.elc
+projectile-bookmarks.eld

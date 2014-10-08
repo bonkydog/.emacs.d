@@ -109,3 +109,12 @@
 [submodule "jedi/dgutov"]
 	path = jedi/dgutov
 	url = https://github.com/dgutov/dot-emacs.git
+[submodule "lib/projectile"]
+	path = lib/projectile
+	url = https://github.com/bbatsov/projectile.git
+[submodule "lib/pkg-info"]
+	path = lib/pkg-info
+	url = https://github.com/lunaryorn/pkg-info.el.git
+[submodule "lib/epl"]
+	path = lib/epl
+	url = https://github.com/cask/epl.git

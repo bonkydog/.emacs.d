@@ -180,6 +180,12 @@
 (load "window-number-conf")
 
 
+;;; Projectile
+(require 'epl)
+(require 'pkg-info)
+(require 'projectile)
+(projectile-global-mode)
+
 ;;;;=======================================================
 
 ;; save all files on loss of focus
