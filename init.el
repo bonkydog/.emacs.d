@@ -306,12 +306,12 @@
 (setq cider-prompt-save-file-on-load nil)
 
 (defun save-clojure-buffers ()
-  (save-some-buffers nil (lambda () (equal major-mode 'clojure-mode))))
+  (save-some-buffers t (lambda () (equal major-mode 'clojure-mode))))
 
 (defun clojure-test-clear-and-run-user-t ()
   (interactive)
   (save-clojure-buffers)
-  (clojure-test-clear)
+  (cider-test-clear-highlights)
   (cider-interactive-eval "(user/t)"))
 
 (global-set-key (kbd "<f12>") 'clojure-test-clear-and-run-user-t)
