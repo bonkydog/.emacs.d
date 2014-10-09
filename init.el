@@ -435,4 +435,4 @@ toggle comment on line (and then move down to next line)."
 (load-theme 'solarized-light)
 
 
-(require 'popwin)
+(load "popwin-conf.el")
