@@ -82,7 +82,7 @@
       (let ((whitespace-style '(trailing empty)) )
         (whitespace-cleanup))))
 
-(add-hook 'before-save-hook 'live-cleanup-whitespace)
+;; (add-hook 'before-save-hook 'live-cleanup-whitespace)
 
 ;; savehist keeps track of some history
 (setq savehist-additional-variables

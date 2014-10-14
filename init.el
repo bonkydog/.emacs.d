@@ -77,6 +77,12 @@
   (load custom-file))
 
 
+;;; Get environment variables from shell
+(require 'exec-path-from-shell)
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
+
+
 ;;; Extend ELisp in useful ways.
 (require 'cl-lib)   ; Common Lisp-esqe extensions
 (require 'dash)     ; Clojure-esque data-structure tools
@@ -450,3 +456,18 @@ toggle comment on line (and then move down to next line)."
 
 
 (load "popwin-conf.el")
+
+(global-set-key (kbd "s-N") 'projectile-find-file)
+(global-set-key (kbd "s-t") 'projectile-find-file)
+
+
+(add-hook 'isearch-mode-end-hook 'my-goto-match-beginning)
+
+(defun my-goto-match-beginning ()
+  (when (and isearch-forward isearch-other-end)
+    (goto-char isearch-other-end)))
+
+(defadvice isearch-exit (after my-goto-match-beginning activate)
+  "Go to beginning of match."
+  (when (and isearch-forward isearch-other-end)
+    (goto-char isearch-other-end)))
