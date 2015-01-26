@@ -133,3 +133,6 @@
 [submodule "lib/easy-kill"]
 	path = lib/easy-kill
 	url = https://github.com/leoliu/easy-kill.git
+[submodule "lib/nlinum"]
+	path = lib/nlinum
+	url = https://github.com/emacsmirror/nlinum.git

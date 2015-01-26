@@ -277,7 +277,7 @@
 ;; use mark to jump around without transient mark mode making you crazy
 ;;(require 'mark-fix)
 
-(global-linum-mode t)
+
 
 
 ;; ;; git-gutter
@@ -539,3 +539,7 @@ toggle comment on line (and then move down to next line)."
 (require 'easy-kill)
 (global-set-key [remap kill-ring-save] 'easy-kill)
 (global-set-key [remap mark-sexp] 'easy-mark)
+
+
+(require 'nlinum)
+(global-nlinum-mode t)
