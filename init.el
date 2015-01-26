@@ -503,3 +503,4 @@ toggle comment on line (and then move down to next line)."
 
 (global-set-key (kbd "s-F") 'ag-project)
 
+(global-set-key (kbd "C-c m") 'mc/mark-all-like-this-dwim)
