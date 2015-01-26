@@ -21,13 +21,19 @@
 ;;; Dimitri Fontaine
 ;;; https://github.com/dimitri/emacs-kicker
 ;;;
+;;; Dmitry Gutov
+;;; https://github.com/dgutov/dot-emacs
+;;;
+;;; Daniel Higginbotham (flyingmachine)
+;;; https://github.com/flyingmachine/emacs.d
+;;;
 ;;; Magnar Sveen
 ;;; https://github.com/magnars/.emacs.d
 ;;;
 ;;; Phil Hagelberg (technomancy)
 ;;; https://github.com/technomancy/emacs-starter-kit/tree/master
 ;;;
-;;; Sam Aaron
+;;; Sam Aaron (overtone)
 ;;; https://github.com/overtone/emacs-live
 
 ;;; Shortcut to edit this file.
