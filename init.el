@@ -427,7 +427,8 @@
 
 (defun configure-text-minor-modes ()
   (auto-fill-mode 1)
-  (auto-complete-mode -1))
+  (auto-complete-mode -1)
+  (company-mode -1))
 
 (add-hook 'text-mode-hook 'configure-text-minor-modes)
 
