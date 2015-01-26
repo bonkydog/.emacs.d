@@ -5,6 +5,7 @@ tmp/
 autosaves/
 backups/
 undo/
+elpa/
 *.elc
 projectile-bookmarks.eld
 .mc-lists.el
