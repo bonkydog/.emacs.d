@@ -416,7 +416,6 @@
 ;;                  popwin:special-display-config))
 
 
-
 (require 'slamhound)
 (defun save-all-and-slamhound ()
   (interactive)
@@ -534,3 +533,9 @@ toggle comment on line (and then move down to next line)."
   '(progn (info-initialize)
           (add-to-list 'Info-directory-list (expand-file-name "lib/magit" bonkydog-root-dir) t)))
 (require 'magit)
+
+
+;; easy-kill
+(require 'easy-kill)
+(global-set-key [remap kill-ring-save] 'easy-kill)
+(global-set-key [remap mark-sexp] 'easy-mark)

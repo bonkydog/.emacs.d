@@ -130,3 +130,6 @@
 [submodule "lib/git-modes"]
 	path = lib/git-modes
 	url = https://github.com/magit/git-modes.git
+[submodule "lib/easy-kill"]
+	path = lib/easy-kill
+	url = https://github.com/leoliu/easy-kill.git
