@@ -45,6 +45,16 @@
       initial-scratch-message nil)
 
 
+;;; Disable arrow keys for great awesome.
+(global-unset-key (kbd "<up>"))
+(global-unset-key (kbd "<down>"))
+(global-unset-key (kbd "<left>"))
+(global-unset-key (kbd "<right>"))
+
+;; Use shell-like backspace C-h, rebind help to F1
+(define-key key-translation-map [?\C-h] [?\C-?])
+(global-set-key (kbd "<f1>") 'help-command)
+
 ;;; Set up directory variables
 
 (setq bonkydog-root-dir user-emacs-directory
