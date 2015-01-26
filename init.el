@@ -501,3 +501,5 @@ toggle comment on line (and then move down to next line)."
   '(ace-jump-mode-enable-mark-sync))
 (define-key global-map (kbd "M-o") 'ace-jump-mode-pop-mark)
 
+(global-set-key (kbd "s-F") 'ag-project)
+
