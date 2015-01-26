@@ -523,3 +523,13 @@ toggle comment on line (and then move down to next line)."
 (global-set-key (kbd "s-F") 'ag-project)
 
 (global-set-key (kbd "C-c m") 'mc/mark-all-like-this-dwim)
+
+(global-set-key (kbd "C-l") 'goto-line)
+
+
+;; Magit
+
+(eval-after-load 'info
+  '(progn (info-initialize)
+          (add-to-list 'Info-directory-list (expand-file-name "lib/magit" bonkydog-root-dir) t)))
+(require 'magit)
