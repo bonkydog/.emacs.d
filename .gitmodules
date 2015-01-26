@@ -118,3 +118,6 @@
 [submodule "lib/epl"]
 	path = lib/epl
 	url = https://github.com/cask/epl.git
+[submodule "lib/ace-jump-mode"]
+	path = lib/ace-jump-mode
+	url = https://github.com/winterTTr/ace-jump-mode.git

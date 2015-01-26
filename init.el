@@ -471,3 +471,23 @@ toggle comment on line (and then move down to next line)."
   "Go to beginning of match."
   (when (and isearch-forward isearch-other-end)
     (goto-char isearch-other-end)))
+
+
+(require 'ace-jump-mode)
+(autoload
+  'ace-jump-mode
+  "ace-jump-mode"
+  "Emacs quick move minor mode"
+  t)
+
+(define-key global-map (kbd "C-o") 'ace-jump-mode)
+
+(autoload
+  'ace-jump-mode-pop-mark
+  "ace-jump-mode"
+  "Ace jump back:-)"
+  t)
+(eval-after-load "ace-jump-mode"
+  '(ace-jump-mode-enable-mark-sync))
+(define-key global-map (kbd "M-o") 'ace-jump-mode-pop-mark)
+
