@@ -375,6 +375,10 @@
 
 (windmove-default-keybindings 'super)
 
+(require 'undo-tree)
+(global-undo-tree-mode)
+(setq undo-tree-auto-save-history t)
+(setq undo-tree-history-directory-alist `(("." . ,(expand-file-name  "undo" bonkydog-root-dir))))
 (global-set-key (kbd "s-_") 'undo-tree-visualize)
 
 

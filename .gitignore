@@ -4,6 +4,7 @@ recentf
 tmp/
 autosaves/
 backups/
+undo/
 *.elc
 projectile-bookmarks.eld
 .mc-lists.el
