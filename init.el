@@ -38,22 +38,31 @@
 
 
 ;;; Disable unneeded chrome.
+
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (setq inhibit-splash-screen t
       initial-scratch-message nil)
 
-
 ;;; Disable arrow keys for great awesome.
+
 (global-unset-key (kbd "<up>"))
 (global-unset-key (kbd "<down>"))
 (global-unset-key (kbd "<left>"))
 (global-unset-key (kbd "<right>"))
 
+
 ;; Use shell-like backspace C-h, rebind help to F1
+
 (define-key key-translation-map [?\C-h] [?\C-?])
 (global-set-key (kbd "<f1>") 'help-command)
+
+
+;; Use Mac "fn" key for Hyper
+
+(setq ns-function-modifier 'hyper) 
+
 
 ;;; Set up directory variables
 
