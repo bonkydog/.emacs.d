@@ -24,7 +24,7 @@
 ;;; Dmitry Gutov
 ;;; https://github.com/dgutov/dot-emacs
 ;;;
-;;; Daniel Higginbotham (flyingmachine)
+;;; Daniel Higginbotham
 ;;; https://github.com/flyingmachine/emacs.d
 ;;;
 ;;; Magnar Sveen
@@ -33,8 +33,27 @@
 ;;; Phil Hagelberg (technomancy)
 ;;; https://github.com/technomancy/emacs-starter-kit/tree/master
 ;;;
-;;; Sam Aaron (overtone)
+;;; Sam Aaron
 ;;; https://github.com/overtone/emacs-live
+;;;
+;;; Sebastian Wiesner
+;;; https://github.com/lunaryorn/.emacs.d
+;;;
+;;; Johan Anderson
+;;; https://github.com/rejeep/emacs
+;;;
+;;; John Wiegley
+;;; https://github.com/jwiegley/dot-emacs
+;;;
+
+
+;;; Disable unneeded chrome as early as possible.
+
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(setq inhibit-splash-screen t
+      initial-scratch-message nil)
 
 ;;; Shortcut to edit this file.
 
@@ -43,21 +62,12 @@
   (find-file user-init-file))
 
 
-;;; Disable unneeded chrome.
-
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(setq inhibit-splash-screen t
-      initial-scratch-message nil)
-
 ;;; Disable arrow keys for great awesome.
 
 (global-unset-key (kbd "<up>"))
 (global-unset-key (kbd "<down>"))
 (global-unset-key (kbd "<left>"))
 (global-unset-key (kbd "<right>"))
-
 
 ;; Use shell-like backspace C-h, rebind help to F1
 
