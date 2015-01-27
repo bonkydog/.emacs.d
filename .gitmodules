@@ -136,3 +136,12 @@
 [submodule "lib/nlinum"]
 	path = lib/nlinum
 	url = https://github.com/emacsmirror/nlinum.git
+[submodule "jedi/lunaryorn"]
+	path = jedi/lunaryorn
+	url = https://github.com/lunaryorn/.emacs.d.git
+[submodule "jedi/rejeep"]
+	path = jedi/rejeep
+	url = https://github.com/rejeep/emacs.git
+[submodule "jedi/jwiegley"]
+	path = jedi/jwiegley
+	url = https://github.com/jwiegley/dot-emacs.git
