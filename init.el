@@ -55,12 +55,19 @@
 (setq inhibit-splash-screen t
       initial-scratch-message nil)
 
+
+;;; Set up Cask & Pallet
+
+(require 'cask "/usr/local/share/emacs/site-lisp/cask.el")
+(cask-initialize)
+(require 'pallet)
+(pallet-mode t)
+
 ;;; Shortcut to edit this file.
 
 (defun ei ()
   (interactive)
   (find-file user-init-file))
-
 
 ;;; Disable arrow keys for great awesome.
 
@@ -90,7 +97,7 @@
 
 ;;; Set up load path
 
-(defun bonkydog-set-up-load-path () ; This is itempotent.  Feel free to re-run it if you add libraries.
+(defun bonkydog-set-up-load-path () ; This is idempotent.  Feel free to re-run it if you add libraries.
   (interactive)
   ;; my code
   (add-to-list 'load-path (expand-file-name "src" bonkydog-root-dir))
@@ -478,9 +485,7 @@ toggle comment on line (and then move down to next line)."
 (global-set-key (kbd "s-=") 'text-scale-increase)
 (global-set-key (kbd "s--") 'text-scale-decrease)
 
-(global-set-key (kbd "s-r") 'isearch-backward)
-
-(cljr-add-keybindings-with-prefix "s-R")
+(cljr-add-keybindings-with-prefix "s-r")
 
 
 
