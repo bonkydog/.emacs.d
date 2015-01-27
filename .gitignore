@@ -9,3 +9,4 @@ elpa/
 *.elc
 projectile-bookmarks.eld
 .mc-lists.el
+.cask/
