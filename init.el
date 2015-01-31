@@ -550,6 +550,14 @@ toggle comment on line (and then move down to next line)."
 (global-set-key [remap kill-ring-save] 'easy-kill)
 (global-set-key [remap mark-sexp] 'easy-mark)
 
-
 (require 'nlinum)
 (global-nlinum-mode t)
+
+;; iy-goto-char
+(require 'iy-go-to-char)
+(add-to-list 'mc/cursor-specific-vars 'iy-go-to-char-start-pos)
+(global-set-key (kbd "M-m") 'iy-go-up-to-char)
+(global-set-key (kbd "M-M") 'iy-go-to-char-backward)
+(global-set-key (kbd "C-c ;") 'iy-go-to-or-up-to-continue)
+(global-set-key (kbd "C-c ,") 'iy-go-to-or-up-to-continue-backward)
+

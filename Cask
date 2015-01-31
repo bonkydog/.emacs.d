@@ -1,8 +1,6 @@
 (source gnu)
 (source melpa)
 
-(depends-on "pallet")
-
 (depends-on "ace-jump-mode")
 (depends-on "ag")
 (depends-on "align-cljlet")
@@ -23,11 +21,13 @@
 (depends-on "gitconfig-mode")
 (depends-on "gitignore-mode")
 (depends-on "idomenu")
+(depends-on "iy-go-to-char")
 (depends-on "magit")
 (depends-on "mic-paren")
 (depends-on "multiple-cursors")
 (depends-on "nlinum")
 (depends-on "packed")
+(depends-on "pallet")
 (depends-on "paredit")
 (depends-on "pkg-info")
 (depends-on "popwin")
