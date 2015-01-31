@@ -26,3 +26,6 @@
 ;; Ignore .DS_Store files with ido mode
 (use-package ido)
 (add-to-list 'ido-ignore-files "\\.DS_Store")
+
+(setq-default dired-omit-files-p t) ; this is buffer-local variable
+(setq dired-omit-files '("\\.DS_Store"))
