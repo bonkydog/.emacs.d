@@ -6,7 +6,10 @@ autosaves/
 backups/
 undo/
 elpa/
+.emacs.desktop
+.emacs.desktop.lock
 *.elc
 projectile-bookmarks.eld
 .mc-lists.el
 .cask/
+

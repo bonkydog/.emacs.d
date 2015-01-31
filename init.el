@@ -569,3 +569,17 @@ toggle comment on line (and then move down to next line)."
 (global-set-key (kbd "C-c ;") 'iy-go-to-or-up-to-continue)
 (global-set-key (kbd "C-c ,") 'iy-go-to-or-up-to-continue-backward)
 
+;;; Save buffers, windows and frames
+
+(use-package desktop   
+  :init (desktop-save-mode)
+  :config (progn
+
+            (setq desktop-dirname (expand-file-name "desktop" bonkydog-root-dir))
+
+            ;; Don't autosave desktops, it's too expensive.  Desktops aren't
+            ;; that precious, and Emacs will save the desktop on exit anyway.
+            (setq desktop-auto-save-timeout nil)
+
+            (dolist (mode '(magit-mode git-commit-mode))
+              (add-to-list 'desktop-modes-not-to-save mode))))
