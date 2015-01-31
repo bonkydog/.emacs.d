@@ -171,7 +171,7 @@
 (eval-after-load 'find-file-in-project
   '(add-to-list 'ffip-patterns "*.clj"))
 
-(require 'clojure-mode)
+(use-package clojure-mode)
 
 (add-hook 'clojure-mode-hook
           (lambda ()
@@ -179,7 +179,7 @@
 
 ;;command to align let statements
 ;;To use: M-x align-cljlet
-(require 'align-cljlet)
+(use-package align-cljlet)
 
 ;;Treat hyphens as a word character when transposing words
 (defvar clojure-mode-with-hyphens-as-word-sep-syntax-table
@@ -203,7 +203,7 @@
   (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'rainbow-delimiters-mode))
 
 ;; Pull in the awesome clj-refactor lib by magnars
-(require 'clj-refactor)
+(use-package clj-refactor)
 (add-hook 'clojure-mode-hook (lambda ()
                                (clj-refactor-mode 1)
                                (cljr-add-keybindings-with-prefix "C-c C-m")))
@@ -224,7 +224,7 @@
 
 ;;; Emacs Live Cider conf
 
-(require 'cider)
+(use-package cider)
 
 (defun live-windows-hide-eol ()
  "Do not show ^M in files containing mixed UNIX and DOS line endings."

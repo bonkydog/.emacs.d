@@ -5,28 +5,28 @@
 ;;; (Largely stolen from Emacs Live.)
 
 ;;use file path to ensure buffer name uniqueness
-(require 'uniquify)
+(use-package uniquify)
 (setq uniquify-buffer-name-style 'forward)
 (setq uniquify-separator "/")
 (setq uniquify-after-kill-buffer-p t)
 (setq uniquify-ignore-buffers-re "^\\*")
 
 ;;store history of recently opened files
-(require 'recentf)
+(use-package recentf)
 (setq recentf-save-file (concat bonkydog-tmp-dir "recentf")
       recentf-max-saved-items 200)
 (recentf-mode t)
 
 ;;When you visit a file, point goes to the last place where it was
 ;;when you previously visited. Save file is set to bonkydog-tmp-dir/places
-(require 'saveplace)
+(use-package saveplace)
 (setq-default save-place t)
 (setq save-place-file (concat bonkydog-tmp-dir "places"))
 
 ;;enable cua-mode for rectangular selections
-(require 'cua-base)
-(require 'cua-gmrk)
-(require 'cua-rect)
+(use-package cua-base)
+(use-package cua-gmrk)
+(use-package cua-rect)
 (cua-mode 1)
 (setq cua-enable-cua-keys nil)
 
@@ -96,7 +96,7 @@
 
 
 ;; bookmarks
-(require 'bookmark)
+(use-package bookmark)
 (setq bookmark-default-file (expand-file-name "bookmarks" bonkydog-tmp-dir)
       bookmark-save-flag 1)
 

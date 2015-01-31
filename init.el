@@ -56,6 +56,15 @@
       initial-scratch-message nil)
 
 
+;;; Shortcut to edit this file.
+
+(defun ei ()
+  (interactive)
+  (find-file user-init-file))
+
+(global-set-key (kbd "s-i") 'ei)
+
+
 ;;; Set up Cask & Pallet
 
 (require 'cask "/usr/local/share/emacs/site-lisp/cask.el")
@@ -63,11 +72,11 @@
 (require 'pallet)
 (pallet-mode t)
 
-;;; Shortcut to edit this file.
 
-(defun ei ()
-  (interactive)
-  (find-file user-init-file))
+;;; Set up use-package
+
+(require 'use-package)
+
 
 ;;; Disable arrow keys for great awesome.
 
@@ -115,15 +124,15 @@
 
 
 ;;; Get environment variables from shell
-(require 'exec-path-from-shell)
+(use-package exec-path-from-shell)
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
 
 ;;; Extend ELisp in useful ways.
-(require 'cl-lib)   ; Common Lisp-esqe extensions
-(require 'dash)     ; Clojure-esque data-structure tools
-(require 's)        ; string handling tools
+(use-package cl-lib)   ; Common Lisp-esqe extensions
+(use-package dash)     ; Clojure-esque data-structure tools
+(use-package s)        ; string handling tools
 
 
 ;;; Start server for emacsclient command.
@@ -132,7 +141,7 @@
 
 
 ;;; Make sure ansi color character escapes are honored.
-(require 'ansi-color)
+(use-package ansi-color)
 (ansi-color-for-comint-mode-on)
 
 (setq font-lock-maximum-decoration t
@@ -160,7 +169,7 @@
 
 ;;; Centralize backup and autosave files.
 
-(require 'backup-dir)
+(use-package backup-dir)
 
 (setq file-precious-flag t)
 
@@ -181,8 +190,8 @@
 
 ;;; Auto-recompile ELisp
 
-(require 'packed)
-(require 'auto-compile)
+(use-package packed)
+(use-package auto-compile)
 
 (auto-compile-on-load-mode 1)
 (auto-compile-on-save-mode 1)
@@ -190,17 +199,17 @@
 
 ;;; Navigate ELisp source without a tags file
 
-(require 'elisp-slime-nav)
+(use-package elisp-slime-nav)
 (add-hook 'emacs-lisp-mode-hook 'elisp-slime-nav-mode)
 
 
 ;;; Dired configuration
 
-(require 'dircolors)
+(use-package dircolors)
 
 ;; Mac's ls doesn't support the --dired flag.  Fall back to emacs's ls emulation.
 (when (eq system-type 'darwin)
-  (require 'ls-lisp)
+  (use-package ls-lisp)
   (setq ls-lisp-use-insert-directory-program nil))
 
 
@@ -220,15 +229,15 @@
 (load "configure-built-ins")
 (load "recentf-conf")
 
-(require 'win-switch)
+(use-package win-switch)
 (load "win-switch-conf")
 (load "window-number-conf")
 
 
 ;;; Projectile
-(require 'epl)
-(require 'pkg-info)
-(require 'projectile)
+(use-package epl)
+(use-package pkg-info)
+(use-package projectile)
 (projectile-global-mode)
 
 ;;;;=======================================================
@@ -281,23 +290,23 @@
 
 ;; set up sticky windows.  use C-x 9 to stick a window in place.
 
-(require 'sticky-windows)
+(use-package sticky-windows)
 (global-set-key     [(control x) (?0)]        'sticky-window-delete-window)
 (global-set-key     [(control x) (?1)]        'sticky-window-delete-other-windows)
 (global-set-key     [(control x) (?9)]        'sticky-window-keep-window-visible)
 
 ;; use mark to jump around without transient mark mode making you crazy
-;;(require 'mark-fix)
+;;(use-package mark-fix)
 
 
 
 
 ;; ;; git-gutter
 ;; (live-add-pack-lib "fringe-helper")
-;; (require 'fringe-helper)
+;; (use-package fringe-helper)
 
 ;; (live-add-pack-lib "git-gutter-fringe")
-;; (require 'git-gutter-fringe)
+;; (use-package git-gutter-fringe)
 
 ;; (setq git-gutter-fr:side 'right-fringe)
 ;; (global-git-gutter-mode)
@@ -323,9 +332,8 @@
     (cd path)
     (dired path)))
 
-(global-set-key (kbd "s-i") 'ei)
 
-(require 'win-switch)
+(use-package win-switch)
 (global-set-key (kbd "s-}") 'win-switch-next-window)
 (global-set-key (kbd "s-{") 'win-switch-previous-window)
 
@@ -402,7 +410,7 @@
 
 (windmove-default-keybindings 'super)
 
-(require 'undo-tree)
+(use-package undo-tree)
 (global-undo-tree-mode)
 (setq undo-tree-auto-save-history t)
 (setq undo-tree-history-directory-alist `(("." . ,(expand-file-name  "undo" bonkydog-root-dir))))
@@ -419,7 +427,7 @@
 (global-set-key (kbd "C-t") 'find-file-in-project)
 
 
-(require 'dired)
+(use-package dired)
 (define-key dired-mode-map (kbd "<mouse-2>") 'dired-find-file) ; not sure why this is mouse-2, but whatever.
 
 ; don't popwin my shell, dude.
@@ -428,7 +436,7 @@
 ;;                  popwin:special-display-config))
 
 
-(require 'slamhound)
+(use-package slamhound)
 (defun save-all-and-slamhound ()
   (interactive)
   (save-all-quietly)
@@ -475,7 +483,7 @@ toggle comment on line (and then move down to next line)."
 (global-set-key (kbd "s-M-<down>") 'next-error)
 (global-set-key (kbd "s-M-<up>") 'previous-error)
 
-(require 'ag)
+(use-package ag)
 
 (global-set-key (kbd "s-=") 'text-scale-increase)
 (global-set-key (kbd "s--") 'text-scale-decrease)
@@ -490,7 +498,7 @@ toggle comment on line (and then move down to next line)."
 ;; make the modeline high contrast
 (setq solarized-high-contrast-mode-line t)
 
-(require 'solarized)
+(use-package solarized)
 (load-theme 'solarized-light)
 
 
@@ -512,7 +520,7 @@ toggle comment on line (and then move down to next line)."
     (goto-char isearch-other-end)))
 
 
-(require 'ace-jump-mode)
+(use-package ace-jump-mode)
 (autoload
   'ace-jump-mode
   "ace-jump-mode"
@@ -542,19 +550,19 @@ toggle comment on line (and then move down to next line)."
 (eval-after-load 'info
   '(progn (info-initialize)
           (add-to-list 'Info-directory-list (expand-file-name "lib/magit" bonkydog-root-dir) t)))
-(require 'magit)
+(use-package magit)
 
 
 ;; easy-kill
-(require 'easy-kill)
+(use-package easy-kill)
 (global-set-key [remap kill-ring-save] 'easy-kill)
 (global-set-key [remap mark-sexp] 'easy-mark)
 
-(require 'nlinum)
+(use-package nlinum)
 (global-nlinum-mode t)
 
 ;; iy-goto-char
-(require 'iy-go-to-char)
+(use-package iy-go-to-char)
 (add-to-list 'mc/cursor-specific-vars 'iy-go-to-char-start-pos)
 (global-set-key (kbd "M-m") 'iy-go-up-to-char)
 (global-set-key (kbd "M-M") 'iy-go-to-char-backward)

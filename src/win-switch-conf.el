@@ -1,4 +1,4 @@
-(require 'win-switch)
+(use-package win-switch)
 (setq win-switch-feedback-background-color "DeepPink3")
 (setq win-switch-feedback-foreground-color "black")
 (setq win-switch-window-threshold 1)

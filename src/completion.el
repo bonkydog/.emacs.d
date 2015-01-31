@@ -2,13 +2,13 @@
 
 ;;; Fuzzy matching
 
-(require 'flx)
+(use-package flx)
 
 ;;; Ido mode
 
-(require 'ido)
-(require 'idomenu)
-(require 'flx-ido)
+(use-package ido)
+(use-package idomenu)
+(use-package flx-ido)
 
 (ido-mode t)
 (flx-ido-mode 1)
@@ -37,7 +37,7 @@
       "Refresh imenu and jump to a place in the buffer using Ido."
       (interactive)
       (unless (featurep 'imenu)
-        (require 'imenu nil t))
+        (use-package imenu nil t))
       (cond
        ((not symbol-list)
         (let ((ido-mode ido-mode)
@@ -83,7 +83,7 @@
 
 ;;; Smart Meta-X
 
-(require 'smex)
+(use-package smex)
 (smex-initialize)
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
@@ -92,5 +92,5 @@
 
 
 ;;; Company Mode
-(require 'company)
+(use-package company)
 (global-company-mode)

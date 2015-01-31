@@ -1,5 +1,5 @@
 ;;window-number mode
-(require 'window-number)
+(use-package window-number)
 (autoload 'window-number-mode "window-number"
   "A global minor mode that enables selection of windows according to
 numbers with the C-x C-j prefix.  Another mode,

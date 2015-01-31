@@ -39,6 +39,7 @@
 (depends-on "smex")
 (depends-on "solarized-theme")
 (depends-on "undo-tree")
+(depends-on "use-package")
 (depends-on "win-switch")
 (depends-on "window-number")
 (depends-on "yasnippet")

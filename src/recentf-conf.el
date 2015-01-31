@@ -1,4 +1,4 @@
-(require 'recentf)
+(use-package recentf)
 
 ;; get rid of `find-file-read-only' and replace it with something
 ;; more useful.
