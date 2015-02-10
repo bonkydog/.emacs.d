@@ -1,5 +1,3 @@
-;;; -*- lexical-binding: t; -*-
-
 ;;;; Brian Jenkins (bonkdog)'s Emacs Configuration
 
 ;;; "Your father's lightsaber. This is the weapon of a Jedi
@@ -106,8 +104,6 @@
 
     ;; make the modeline high contrast
     (setq solarized-high-contrast-mode-line t)))
-
-
 
 
 ;;; Set up load path
@@ -435,6 +431,12 @@
 (use-package company)
 (global-company-mode)
 
+(use-package dired-x
+  :init
+  (progn
+    (setq dired-omit-verbose nil)
+    (add-hook 'dired-load-hook
+              (lambda () (load "dired-x")))))
 
 ;;; Customize for MacOS
 
@@ -467,8 +469,9 @@
   (use-package ido)
   (add-to-list 'ido-ignore-files "\\.DS_Store")
 
+  (setq dired-omit-mode t)
   (setq-default dired-omit-files-p t) ; this is buffer-local variable
-  (setq dired-omit-files '("\\.DS_Store"))
+  (setq dired-omit-files "\\.DS_Store")
 
   (setq default-input-method "MacOSX"))
 
@@ -643,14 +646,15 @@
     (global-set-key (kbd "s-F") 'ag-project)))
 
 ;;; Save unsaved file-backed buffers on loss of focus.
+(use-package files)
 
 (defun mute (f)
   (flet ((message (&rest ignored) nil))
-    (funcall f)))
+    (eval f)))
 
 (defun save-file-visiting-buffers ()
   (interactive)
-  (mute (save-some-buffers t nil)))
+  (mute '(save-some-buffers t nil)))
 
 (add-hook 'focus-out-hook 'save-file-visiting-buffers)
 
@@ -895,18 +899,8 @@ toggle comment on line (and then move down to next line)."
               (add-to-list 'desktop-modes-not-to-save mode))))
 
 
-(when window-system
-  (let ((elapsed (float-time (time-subtract (current-time)
-                                            emacs-start-time))))
-    (message "Loading %s...done (%.3fs)" load-file-name elapsed))
 
-  (add-hook 'after-init-hook
-            `(lambda ()
-               (let ((elapsed (float-time (time-subtract (current-time)
-                                                         emacs-start-time))))
-                 (message "Loading %s...done (%.3fs) [after-init]"
-                          ,load-file-name elapsed)))
-            t))
+
 
 
 ;;; Misc Keybindings
@@ -922,3 +916,35 @@ toggle comment on line (and then move down to next line)."
 
 (define-key key-translation-map [?\C-h] [?\C-?])
 (global-set-key (kbd "<f1>") 'help-command)
+
+
+
+;;; Send message about load time
+(when window-system
+  (let ((elapsed (float-time (time-subtract (current-time)
+                                            emacs-start-time))))
+    (message "Loading %s...done (%.3fs)" load-file-name elapsed))
+
+  (add-hook 'after-init-hook
+            `(lambda ()
+               (let ((elapsed (float-time (time-subtract (current-time)
+                                                         emacs-start-time))))
+                 (message "Loading %s...done (%.3fs) [after-init]"
+                          ,load-file-name elapsed)))
+            t))
+
+;;; speed up find-dired
+(require 'find-dired)
+(setq find-program "find -E")
+(setq find-ls-option '( "-print0 | xargs -0 ls -dilsb" . "-dilsb"))
+
+
+(defun bonkydog-dired-project-files ()
+  (interactive)
+  (let ((default-directory (projectile-project-root))
+        (find-program "git ls-files -c -o --exclude-standard -z")
+        (find-ls-option '( " | xargs -0 ls -dislb" . "-dilsb")))
+    (find-dired "." "")))
+
+(global-set-key (kbd "s-D") 'bonkydog-dired-project-files)
+
