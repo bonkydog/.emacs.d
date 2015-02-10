@@ -22,6 +22,7 @@
 (depends-on "gitignore-mode")
 (depends-on "idomenu")
 (depends-on "iy-go-to-char")
+(depends-on "key-chord")
 (depends-on "magit")
 (depends-on "mic-paren")
 (depends-on "multiple-cursors")

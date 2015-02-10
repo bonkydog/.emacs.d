@@ -122,6 +122,9 @@
 
 (bonkydog-set-up-load-path)
 
+(use-package key-chord
+  :init
+  (key-chord-mode t))
 
 ;;; Extend ELisp in useful ways.
 (use-package cl-lib)   ; Common Lisp-esqe extensions
@@ -834,6 +837,8 @@ toggle comment on line (and then move down to next line)."
 
 
 (use-package ace-jump-mode
+  :init
+  (key-chord-define-global "jk" 'ace-jump-mode)
   :bind
   (((kbd "C-o") . ace-jump-mode)
    ((kbd "M-o") . ace-jump-mode-pop-mark))
