@@ -204,25 +204,25 @@
       (setq ls-lisp-use-insert-directory-program nil))))
 
 
+(use-package paredit)
 (use-package smartparens
-  :commands smartparens-mode
+  :disabled t
   :init
-  
-
-  :config
   (progn
     (require 'smartparens-config)
     (setq sp-base-key-bindings 'paredit)
     (setq sp-autoskip-closing-pair 'always)
     (setq sp-hybrid-kill-entire-symbol nil)
     (sp-use-paredit-bindings)
-    (show-smartparens-global-mode +1)))
+    (show-smartparens-global-mode +1)
+    (smartparens-strict-mode t)))
 
 (use-package rainbow-delimiters
   :commands rainbow-delimiters-mode)
 
 (dolist (x '(scheme emacs-lisp lisp clojure cider-repl))
-   (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'smartparens-mode)
+   ;(add-hook (intern (concat (symbol-name x) "-mode-hook")) 'smartparens-mode)
+   (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'paredit-mode)
    (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'rainbow-delimiters-mode))
 
 
