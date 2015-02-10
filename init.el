@@ -286,32 +286,32 @@
       (save-some-buffers t (lambda () (equal major-mode 'clojure-mode))))
 
     ;; If there’s an error compiling during a reset, sometimes user.clj doesn’t
-    ;; get re-loaded.  Then we’re stranded.  So we manually reload dev/user.clj
-    ;; every time before resetting.  Make sure any state vars in dev/user.clj are
+    ;; get re-loaded.  Then we’re stranded.  So we manually reload dev.clj
+    ;; every time before resetting.  Make sure any state vars in dev.clj are
     ;; defined using defonce to avoid losing state (e.g. the webserver).
 
-    (defun reload-dev-user ()
+    (defun reload-dev ()
       (interactive)
-      (let ((dev-user-file-name (expand-file-name "dev/user.clj" (projectile-project-root))))
+      (let ((dev-user-file-name (expand-file-name "src/cljs/dev.clj" (projectile-project-root))))
         (when (file-exists-p dev-user-file-name)
-          (message "reloading dev/user.clj")
-          (cider-load-file dev-user-file-name)
+          (message "reloading dev.cljs")
+          (cider-interactive-eval dev-user-file-name)
           t)))
 
-    (defun clojure-test-clear-and-run-user-t ()
+    (defun clojure-test-clear-and-run-dev-t ()
       (interactive)
       (save-clojure-buffers)
       (cider-test-clear-highlights)
-      (reload-dev-user)
-      (cider-interactive-eval "(user/t)"))
+      (reload-dev)
+      (cider-interactive-eval "(dev/t)"))
 
-    (global-set-key (kbd "<f12>") 'clojure-test-clear-and-run-user-t)
+    (global-set-key (kbd "<f12>") 'clojure-test-clear-and-run-dev-t)
 
     (defun cider-refresh ()
       (interactive)
       (save-clojure-buffers)
-      (reload-dev-user)
-      (cider-interactive-eval "(user/reset)"))
+      (reload-dev)
+      (cider-interactive-eval "(dev/reset)"))
 
     (global-set-key (kbd "s-<return>") 'cider-refresh)
 
