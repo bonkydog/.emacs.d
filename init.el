@@ -56,7 +56,6 @@
 (setq inhibit-splash-screen t
       initial-scratch-message nil)
 
-
 ;;; Shortcut to edit this file.
 
 (defun ei ()
@@ -64,7 +63,6 @@
   (find-file user-init-file))
 
 (global-set-key (kbd "s-i") 'ei)
-
 
 ;;; Set up directory variables
 
@@ -108,13 +106,19 @@
 
 ;;; Set up load path
 
-(defun bonkydog-set-up-load-path ()
+(defun bonkydog-set-up-load-path () ; This is itempotent.  Feel free to re-run it if you add libraries.
   (interactive)
   ;; my code
   (add-to-list 'load-path (expand-file-name "src" bonkydog-root-dir))
 
   ;; other peoples' "vendored" code.  (That is, checked into this project.)
-  (add-to-list 'load-path (expand-file-name "vendor" bonkydog-root-dir)))
+  (add-to-list 'load-path (expand-file-name "vendor" bonkydog-root-dir)) ; others' code, checked in.
+
+  ;; other people's code, "submoduled" into this project
+  (dolist (dir (directory-files (expand-file-name "lib" bonkydog-root-dir) t))
+    (if (and (file-directory-p dir)
+             (not (string-prefix-p "." (file-name-nondirectory dir))))
+        (add-to-list 'load-path dir))))
 
 (bonkydog-set-up-load-path)
 
@@ -791,8 +795,9 @@ toggle comment on line (and then move down to next line)."
 (global-set-key (kbd "s-=") 'text-scale-increase)
 (global-set-key (kbd "s--") 'text-scale-decrease)
 
+(global-set-key (kbd "s-r") 'isearch-backward)
 
-
+(cljr-add-keybindings-with-prefix "s-R")
 
 (use-package popwin
   :init

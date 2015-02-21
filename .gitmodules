@@ -16,21 +16,126 @@
 [submodule "jedi/technomancy/better-defaults"]
 	path = jedi/technomancy/better-defaults
 	url = https://github.com/technomancy/better-defaults.git
+[submodule "lib/auto-compile"]
+	path = lib/auto-compile
+	url = https://github.com/tarsius/auto-compile.git
+[submodule "lib/packed"]
+	path = lib/packed
+	url = https://github.com/tarsius/packed.git
+[submodule "lib/elisp-slime-nav"]
+	path = lib/elisp-slime-nav
+	url = https://github.com/purcell/elisp-slime-nav
 [submodule "jedi/flyingmachine"]
 	path = jedi/flyingmachine
 	url = https://github.com/flyingmachine/emacs.d
+[submodule "lib/paredit"]
+	path = lib/paredit
+	url = https://github.com/emacsmirror/paredit.git
+[submodule "lib/CLj-refactor"]
+	path = lib/clj-refactor
+	url = https://github.com/clojure-emacs/clj-refactor.el.git
+[submodule "lib/dash"]
+	path = lib/dash
+	url = https://github.com/magnars/dash.el.git
+[submodule "lib/s"]
+	path = lib/s
+	url = https://github.com/magnars/s.el.git
+[submodule "lib/yasnippet"]
+	path = lib/yasnippet
+	url = https://github.com/capitaomorte/yasnippet.git
+[submodule "lib/multiple-cursors"]
+	path = lib/multiple-cursors
+	url = https://github.com/magnars/multiple-cursors.el.git
+[submodule "lib/clojure-mode"]
+	path = lib/clojure-mode
+	url = https://github.com/clojure-emacs/clojure-mode.git
+[submodule "lib/cider"]
+	path = lib/cider
+	url = https://github.com/clojure-emacs/cider.git
+[submodule "lib/queue"]
+	path = lib/queue
+	url = https://github.com/emacsmirror/queue.git
+[submodule "lib/smex"]
+	path = lib/smex
+	url = https://github.com/nonsequitur/smex.git
+[submodule "lib/flx"]
+	path = lib/flx
+	url = https://github.com/lewang/flx.git
+[submodule "lib/idomenu"]
+	path = lib/idomenu
+	url = https://github.com/emacsmirror/idomenu.git
+[submodule "lib/exec-path-from-shell"]
+	path = lib/exec-path-from-shell
+	url = https://github.com/purcell/exec-path-from-shell.git
+[submodule "lib/win-switch"]
+	path = lib/win-switch
+	url = https://github.com/genovese/win-switch.git
+[submodule "lib/window-number"]
+	path = lib/window-number
+	url = https://github.com/emacsmirror/window-number.git
+[submodule "lib/mic-paren"]
+	path = lib/mic-paren
+	url = https://github.com/emacsmirror/mic-paren.git
+[submodule "lib/rainbow-delimiters"]
+	path = lib/rainbow-delimiters
+	url = https://github.com/jlr/rainbow-delimiters.git
 [submodule "align-cljlet"]
 	path = lib/align-cljlet/
 	url = https://github.com/gstamp/align-cljlet.git
+[submodule "lib/align-cljlet"]
+	path = lib/align-cljlet
+	url = https://github.com/gstamp/align-cljlet.git
+[submodule "lib/ag"]
+	path = lib/ag
+	url = https://github.com/Wilfred/ag.el.git
+[submodule "lib/slamhound"]
+	path = lib/slamhound
+	url = https://github.com/technomancy/slamhound.git
 [submodule "SOLARIZED-emacs"]
 	path = lib/solarized-emacs/
 	url = https://github.com/bbatsov/solarized-emacs.git
+[submodule "lib/popwin"]
+	path = lib/popwin
+	url = https://github.com/m2ym/popwin-el.git
+[submodule "lib/solarized-emacs"]
+	path = lib/solarized-emacs
+	url = https://github.com/bbatsov/solarized-emacs.git
+[submodule "lib/complement"]
+	path = lib/complement
+	url = https://github.com/alexander-yakushev/compliment.git
+[submodule "lib/company-mode"]
+	path = lib/company-mode
+	url = https://github.com/company-mode/company-mode.git
 [submodule "jedi/dgutov"]
 	path = jedi/dgutov
 	url = https://github.com/dgutov/dot-emacs.git
+[submodule "lib/projectile"]
+	path = lib/projectile
+	url = https://github.com/bbatsov/projectile.git
+[submodule "lib/pkg-info"]
+	path = lib/pkg-info
+	url = https://github.com/lunaryorn/pkg-info.el.git
+[submodule "lib/epl"]
+	path = lib/epl
+	url = https://github.com/cask/epl.git
 [submodule "lib/ace-jump-mode"]
 	path = lib/ace-jump-mode
 	url = https://github.com/winterTTr/ace-jump-mode.git
+[submodule "lib/undo-tree"]
+	path = lib/undo-tree
+	url = http://www.dr-qubit.org/git/undo-tree.git
+[submodule "lib/magit"]
+	path = lib/magit
+	url = https://github.com/magit/magit.git
+[submodule "lib/git-modes"]
+	path = lib/git-modes
+	url = https://github.com/magit/git-modes.git
+[submodule "lib/easy-kill"]
+	path = lib/easy-kill
+	url = https://github.com/leoliu/easy-kill.git
+[submodule "lib/nlinum"]
+	path = lib/nlinum
+	url = https://github.com/emacsmirror/nlinum.git
 [submodule "jedi/lunaryorn"]
 	path = jedi/lunaryorn
 	url = https://github.com/lunaryorn/.emacs.d.git
