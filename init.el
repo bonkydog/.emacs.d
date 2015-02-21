@@ -71,12 +71,24 @@
 (defconst bonkydog-autosaves-dir (expand-file-name "autosaves" bonkydog-root-dir))
 (defconst bonkydog-tmp-dir (file-name-as-directory (expand-file-name "tmp" bonkydog-root-dir)))
 
-;;; Set up Cask & Pallet
 
-(require 'cask "/usr/local/share/emacs/site-lisp/cask.el")
-(cask-initialize)
-(require 'pallet)
-(pallet-mode t)
+;;; Set up load path
+
+(defun bonkydog-set-up-load-path () ; This is itempotent.  Feel free to re-run it if you add libraries.
+  (interactive)
+  ;; my code
+  (add-to-list 'load-path (expand-file-name "src" bonkydog-root-dir))
+
+  ;; other peoples' "vendored" code.  (That is, checked into this project.)
+  (add-to-list 'load-path (expand-file-name "vendor" bonkydog-root-dir)) ; others' code, checked in.
+
+  ;; other people's code, "submoduled" into this project
+  (dolist (dir (directory-files (expand-file-name "lib" bonkydog-root-dir) t))
+    (if (and (file-directory-p dir)
+             (not (string-prefix-p "." (file-name-nondirectory dir))))
+        (add-to-list 'load-path dir))))
+
+(bonkydog-set-up-load-path)
 
 
 ;;; Set up use-package
@@ -103,24 +115,6 @@
     ;; make the modeline high contrast
     (setq solarized-high-contrast-mode-line t)))
 
-
-;;; Set up load path
-
-(defun bonkydog-set-up-load-path () ; This is itempotent.  Feel free to re-run it if you add libraries.
-  (interactive)
-  ;; my code
-  (add-to-list 'load-path (expand-file-name "src" bonkydog-root-dir))
-
-  ;; other peoples' "vendored" code.  (That is, checked into this project.)
-  (add-to-list 'load-path (expand-file-name "vendor" bonkydog-root-dir)) ; others' code, checked in.
-
-  ;; other people's code, "submoduled" into this project
-  (dolist (dir (directory-files (expand-file-name "lib" bonkydog-root-dir) t))
-    (if (and (file-directory-p dir)
-             (not (string-prefix-p "." (file-name-nondirectory dir))))
-        (add-to-list 'load-path dir))))
-
-(bonkydog-set-up-load-path)
 
 (use-package key-chord
   :init
@@ -794,10 +788,6 @@ toggle comment on line (and then move down to next line)."
 
 (global-set-key (kbd "s-=") 'text-scale-increase)
 (global-set-key (kbd "s--") 'text-scale-decrease)
-
-(global-set-key (kbd "s-r") 'isearch-backward)
-
-(cljr-add-keybindings-with-prefix "s-R")
 
 (use-package popwin
   :init

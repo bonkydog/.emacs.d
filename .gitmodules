@@ -145,3 +145,9 @@
 [submodule "jedi/jwiegley"]
 	path = jedi/jwiegley
 	url = https://github.com/jwiegley/dot-emacs.git
+[submodule "lib/use-package"]
+	path = lib/use-package
+	url = git@github.com:jwiegley/use-package.git
+[submodule "lib/key-chord"]
+	path = lib/key-chord
+	url = git@github.com:emacsmirror/key-chord.git
