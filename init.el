@@ -234,7 +234,7 @@
 
 (use-package clojure-mode
   :commands clojure-mode
-  :mode "\\.clj\\(s\\)\\'"
+  :mode "\\.clj\\(s\\)?"
   :interpreter "clojure"
   :config
   (progn
