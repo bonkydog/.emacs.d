@@ -941,5 +941,5 @@ toggle comment on line (and then move down to next line)."
         (find-ls-option '( " | xargs -0 ls -dislb" . "-dilsb")))
     (find-dired "." "")))
 
-(global-set-key (kbd "s-D") 'bonkydog-dired-project-files)
 
+(global-set-key (kbd "s-D") 'bonkydog-dired-project-files)
